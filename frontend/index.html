@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Number Plate Recognition System</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace">
+        <div class="panel upload-panel">
+          <div class="panel-heading">
+            <h1>Number Plate Recognition</h1>
+            <p>Upload a vehicle image and review the detected plate, crop, confidence, and processing history.</p>
+          </div>
+
+          <form id="uploadForm" class="upload-form">
+            <label class="drop-zone" for="imageInput">
+              <span class="drop-title">Choose vehicle image</span>
+              <span class="drop-meta">JPG, JPEG, or PNG up to 8 MB</span>
+              <input id="imageInput" name="file" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+            </label>
+            <button class="primary-action" type="submit">Recognize Plate</button>
+          </form>
+
+          <img id="preview" class="preview" alt="Selected vehicle preview" hidden>
+        </div>
+
+        <div class="panel result-panel">
+          <div class="panel-heading compact">
+            <h2>Result</h2>
+            <span id="statusPill" class="status-pill">Waiting</span>
+          </div>
+          <div id="result" class="result-empty">Upload an image to start recognition.</div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <div class="section-heading">
+          <div>
+            <h2>Demo Samples</h2>
+            <p>Use known test images to compare expected plate text against the API result.</p>
+          </div>
+          <button id="runAllSamples" class="secondary-action" type="button">Run All</button>
+        </div>
+        <div id="sampleGrid" class="sample-grid">
+          <div class="sample-loading">Loading demo samples...</div>
+        </div>
+      </section>
+
+      <section class="history-section">
+        <div class="section-heading">
+          <h2>Detection History</h2>
+          <button id="refreshHistory" class="secondary-action" type="button">Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Plate</th>
+                <th>Status</th>
+                <th>Detection</th>
+                <th>OCR</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr><td colspan="5">No records loaded.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

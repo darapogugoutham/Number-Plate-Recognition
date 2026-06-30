@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+backend/uploads/*
+!backend/uploads/original/
+!backend/uploads/crops/
+!backend/uploads/original/.gitkeep
+!backend/uploads/crops/.gitkeep
+data/raw/*
+data/processed/*
+data/annotations/*
+*.log
+.DS_Store
