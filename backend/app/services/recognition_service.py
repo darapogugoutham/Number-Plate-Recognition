@@ -6,11 +6,6 @@ from uuid import uuid4
 
 from app.config import Settings
 from app.core.exceptions import InvalidImageError
-from app.cv.ocr_engine import run_tesseract_ocr
-from app.cv.plate_cropper import crop_plate, save_plate_crop
-from app.cv.plate_detector import detect_plate_opencv
-from app.cv.postprocessing import clean_plate_text, correct_common_ocr_errors, validate_plate
-from app.cv.preprocessing import load_image, preprocess_for_detection, preprocess_for_ocr
 
 
 logger = logging.getLogger(__name__)
@@ -21,6 +16,12 @@ class RecognitionService:
         self.settings = settings
 
     def recognize(self, image_path: Path, crop_path: Path) -> dict:
+        from app.cv.ocr_engine import run_tesseract_ocr
+        from app.cv.plate_cropper import crop_plate, save_plate_crop
+        from app.cv.plate_detector import detect_plate_opencv
+        from app.cv.postprocessing import clean_plate_text, correct_common_ocr_errors, validate_plate
+        from app.cv.preprocessing import load_image, preprocess_for_detection, preprocess_for_ocr
+
         start = time.perf_counter()
         created_at = datetime.now(timezone.utc)
         record = {
